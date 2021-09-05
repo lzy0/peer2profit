@@ -6,3 +6,10 @@ services:
       dockerfile: Dockerfile.Debian
     image: enwaiax/peer2profit:latest
     restart: unless-stopped
+    environment:
+      - email=chasing0806@gmail.com
+    logging: 
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "1"

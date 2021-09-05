@@ -3,8 +3,8 @@ LABEL org.opencontainers.image.authors="<chasing66@live.com>"
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates procps \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 WORKDIR /root
-# ADD https://updates.peer2profit.com/p2pclient /app/
-COPY p2pclient /root/.
-RUN chmod +x p2pclient
+# ADD https://updates.peer2profit.com/p2pclient /root/
+COPY p2pclient entrypoint.sh /root/
+RUN chmod +x p2pclient entrypoint.sh
 ENV email=chasing66@live.com
-ENTRYPOINT [ "/bin/bash", "-c", "/root/p2pclient -l ${email}" ]
+ENTRYPOINT ["/root/entrypoint.sh"]
